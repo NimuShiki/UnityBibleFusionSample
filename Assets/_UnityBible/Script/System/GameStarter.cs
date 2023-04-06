@@ -12,6 +12,7 @@ namespace UnityBibleSample
     public class GameStarter : MonoBehaviour
     {
         [SerializeField] private GameObject _individualObject;
+        [SerializeField] private GameObject _canvas;
         [SerializeField] private NetworkRunner _networkRunnerPrefab = null;
         [SerializeField] private GameMode _gameMode = GameMode.AutoHostOrClient;
         private NetworkRunner _runnerInstance = null;
@@ -46,7 +47,7 @@ namespace UnityBibleSample
 
 #if UNITY_EDITOR
             _individualObject.SetActive(false);
-            //_runnerInstance.SetActiveScene(1);
+            _canvas.SetActive(true);
 #else
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 #endif
