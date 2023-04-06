@@ -37,8 +37,6 @@ namespace UnityBibleSample
 
         public override void Spawned()
         {
-            Runner.AddCallbacks(GetComponentsInChildren<INetworkRunnerCallbacks>());
-
             if (Object.HasInputAuthority)
             {
                 _Camera.cullingMask |= 1 << 10;
@@ -61,7 +59,9 @@ namespace UnityBibleSample
                 //マルチピアでRunner visibility nodes対応できない部分の対処
                 _audioListener.enabled = false;
                 _Camera.enabled = false;
+                if(Runner.IsClient) _cmVCam.enabled = false;
             }
+            
 
             // インプット処理
             if (GetInput(out NetworkInputData data))

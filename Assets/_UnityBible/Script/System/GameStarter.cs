@@ -30,8 +30,13 @@ namespace UnityBibleSample
         {
             _runnerInstance = Instantiate(_networkRunnerPrefab);
 
+            var roomName = "product";
+#if UNITY_EDITOR
+            roomName = "test";
+#endif
             var startGameArgs = new StartGameArgs()
             {
+                SessionName = roomName,
                 GameMode = _gameMode,
                 Scene = 1,
                 SceneManager = _runnerInstance.gameObject.AddComponent<NetworkSceneManagerDefault>(),
