@@ -15,6 +15,7 @@ namespace UnityBibleSample
         public void Initialize(int team)
         {
             teamIndex = team;
+            GetComponent<TurningTurretByKey>().SetStartRotation(teamIndex);
         }
 
         public static void ChangeSetting(Changed<PlayerInitializer> changed)

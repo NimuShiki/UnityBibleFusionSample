@@ -17,8 +17,8 @@ namespace UnityBibleSample
 
         void Start()
         {
-            quaternion = Quaternion.identity;
             quaternionInterpolator = GetInterpolator<Quaternion>(nameof(quaternion));
+            quaternion *= Quaternion.AngleAxis(1f, new Vector3(0, 1, 0));
         }
 
         public override void FixedUpdateNetwork()
@@ -38,6 +38,14 @@ namespace UnityBibleSample
 
                 quaternion *= Quaternion.AngleAxis(_rotateSpeed * Runner.DeltaTime, new Vector3(0, direction, 0));
             }
+        }
+
+        public void SetStartRotation(int teamIndex)
+        {
+            quaternion = Quaternion.identity;
+            quaternionInterpolator = GetInterpolator<Quaternion>(nameof(quaternion));
+
+            quaternion *= Quaternion.AngleAxis(teamIndex * 180f, new Vector3(0, 1, 0));
         }
 
         public override void Render()

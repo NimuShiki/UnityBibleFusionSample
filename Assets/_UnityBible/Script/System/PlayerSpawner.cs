@@ -32,7 +32,7 @@ namespace UnityBibleSample
                 var teamIndex = teamManager.GetTeamIndex();
                 Vector3 randomPosition = teamManager.GetRandomPosition(teamIndex);
 
-                var character = runner.Spawn(_playerPrefab, randomPosition, Quaternion.FromToRotation(Vector3.zero,new Vector3(0,180 * teamIndex,0)), inputAuthority: player,
+                var character = runner.Spawn(_playerPrefab, randomPosition, Quaternion.identity, inputAuthority: player,
                     (Runner, no) => no.GetComponent<PlayerInitializer>().Initialize(teamIndex));
 
                 _playerMap[player] = character;

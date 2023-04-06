@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 286167752}
   - component: {fileID: 286167753}
   m_Layer: 0
-  m_Name: Goal (1)
+  m_Name: GoalBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,7 +397,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286167750}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -408,7 +408,7 @@ Transform:
   - {fileID: 625489936}
   m_Father: {fileID: 619450280}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &286167752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +424,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _teamScore: 0
   _inGame: 0
-  scoreTMP: {fileID: 967881872}
+  scoreTMP: {fileID: 1113903269}
   GoalSound: {fileID: 286167753}
 --- !u!82 &286167753
 AudioSource:
@@ -1289,7 +1289,7 @@ GameObject:
   - component: {fileID: 489623268}
   - component: {fileID: 489623269}
   m_Layer: 0
-  m_Name: Goal
+  m_Name: GoalRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1302,7 +1302,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489623266}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1313,7 +1313,7 @@ Transform:
   - {fileID: 349948513}
   m_Father: {fileID: 619450280}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &489623268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _teamScore: 0
   _inGame: 0
-  scoreTMP: {fileID: 1113903269}
+  scoreTMP: {fileID: 967881872}
   GoalSound: {fileID: 489623269}
 --- !u!82 &489623269
 AudioSource:
@@ -1788,7 +1788,7 @@ MonoBehaviour:
   _playerPrefab: {fileID: 3802128632755015728, guid: 24f299b6395ba964083e75d2f2b43b14, type: 3}
   _goalManagerR: {fileID: 489623268}
   _goalManagerB: {fileID: 286167752}
-  gameTime: 60
+  gameTime: 6
   gameInterval: 5
   TMPTime: {fileID: 2139570127}
   TMPResult: {fileID: 687641107}

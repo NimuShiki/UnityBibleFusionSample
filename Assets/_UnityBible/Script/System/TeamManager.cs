@@ -45,7 +45,7 @@ namespace UnityBibleSample
 
             var pos = randomDirection * randomDistance;
             pos.y = 0;
-            pos.z += team;// * 40 - 20;
+            pos.z += team * 40 - 20;
 
             return pos;
         }
