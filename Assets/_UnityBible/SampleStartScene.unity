@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _individualObject: {fileID: 315673768}
-  _canvas: {fileID: 0}
+  _canvas: {fileID: 255918698}
   _networkRunnerPrefab: {fileID: 3035581063439056663, guid: 267cdeaf595f56649b70451daa2345ad, type: 3}
   _gameMode: 6
 --- !u!1 &1905476018
