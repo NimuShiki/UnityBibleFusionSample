@@ -7,8 +7,10 @@ namespace UnityBibleSample
 {
     public class PlayerAction : NetworkBehaviour
     {
-        [Networked] private TickTimer delay { get; set; }
-        [Networked(OnChanged = nameof(PlayFireParticle))] private NetworkBool underFire { get; set; }
+        [Networked(OnChanged = nameof(PlayFireParticle))] private TickTimer delay { get; set; }
+        private bool underFire => !delay.ExpiredOrNotRunning(Runner);
+
+        //[Networked(OnChanged = nameof(PlayFireParticle))] private NetworkBool underFire { get; set; }
 
         [SerializeField] private GameObject VisualObject;
         [SerializeField] private Transform ShootReference;
@@ -52,8 +54,6 @@ namespace UnityBibleSample
 
         public override void FixedUpdateNetwork()
         {
-            underFire = false;
-
             if (Object.HasInputAuthority == false)
             {
                 //マルチピアでRunner visibility nodes対応できない部分の対処
@@ -61,7 +61,6 @@ namespace UnityBibleSample
                 _Camera.enabled = false;
                 if(Runner.IsClient) _cmVCam.enabled = false;
             }
-            
 
             // インプット処理
             if (GetInput(out NetworkInputData data))
@@ -70,9 +69,6 @@ namespace UnityBibleSample
                 data.direction.Normalize();
                 if (data.direction.sqrMagnitude > 0 && canMove)
                 {
-                    //Vector3 cameraForward = Vector3.Scale(_Camera.transform.forward, new Vector3(1, 0, 1)).normalized;
-                    //var direction = data.direction.y * cameraForward + _Camera.transform.right * data.direction.x;
-                   
                     var cameraForward = Vector3.Scale(_Camera.transform.forward, new Vector3(1, 0, 1)).normalized;
                     var rotation = Quaternion.FromToRotation(Vector3.forward, cameraForward);
                     _cc.Move(rotation * data.direction * Runner.DeltaTime);
@@ -97,10 +93,6 @@ namespace UnityBibleSample
         private void Fire()
         {
             delay = TickTimer.CreateFromSeconds(Runner, fireInterval);
-
-            underFire = true;
-            
-            fireParticle.Play();
 
             var hit = Runner.LagCompensation.Raycast(
                 ShootReference.position, ShootReference.forward, RayLength, //Rayの基準点、向き、長さ
