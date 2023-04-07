@@ -36,6 +36,8 @@ namespace UnityBibleSample
                     direction -= 1;
                 }
 
+                if (direction == 0) return;
+                
                 quaternion *= Quaternion.AngleAxis(_rotateSpeed * Runner.DeltaTime, new Vector3(0, direction, 0));
             }
         }
