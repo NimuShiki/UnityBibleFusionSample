@@ -15,6 +15,7 @@ namespace UnityBibleSample
         [SerializeField] private GameObject _canvas;
         [SerializeField] private NetworkRunner _networkRunnerPrefab = null;
         [SerializeField] private GameMode _gameMode = GameMode.AutoHostOrClient;
+        [SerializeField] private ROOMNAME roomName;
         private NetworkRunner _runnerInstance = null;
 
         private void Awake()
@@ -31,13 +32,9 @@ namespace UnityBibleSample
         {
             _runnerInstance = Instantiate(_networkRunnerPrefab);
 
-            var roomName = "product";
-#if UNITY_EDITOR
-            roomName = "test";
-#endif
             var startGameArgs = new StartGameArgs()
             {
-                SessionName = roomName,
+                SessionName = roomName.ToString(),
                 GameMode = _gameMode,
                 Scene = 1,
                 SceneManager = _runnerInstance.gameObject.AddComponent<NetworkSceneManagerDefault>(),
@@ -53,5 +50,11 @@ namespace UnityBibleSample
 #endif
         }
 
+    }
+
+    enum ROOMNAME
+    {
+        product,
+        test
     }
 }
