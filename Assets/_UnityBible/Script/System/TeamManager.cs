@@ -19,11 +19,8 @@ namespace UnityBibleSample
         {
             var teamIndex = 0;
 
-            //ƒ`[ƒ€‚Ì”‚©‚ç‚Ç‚Á‚¿‚É‚·‚é‚©Œˆ‚ß‚é
             var all = _playerMap.Count();
             var teamB = _playerMap.Where(x => x.Value == 0).Count();
-
-            Debug.Log("count " + all + " " + teamB);
 
             if (all - teamB < teamB) {
                 teamIndex = 1;
