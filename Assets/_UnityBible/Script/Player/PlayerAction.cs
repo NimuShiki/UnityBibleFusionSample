@@ -1,5 +1,8 @@
 using Cinemachine;
 using Fusion;
+using Fusion.Sockets;
+using System.Collections.Generic;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -9,9 +12,6 @@ namespace UnityBibleSample
     {
         [Networked(OnChanged = nameof(PlayFireParticle))] private TickTimer delay { get; set; }
         private bool underFire => !delay.ExpiredOrNotRunning(Runner);
-
-        //[Networked(OnChanged = nameof(PlayFireParticle))] private NetworkBool underFire { get; set; }
-
         [SerializeField] private GameObject VisualObject;
         [SerializeField] private Transform ShootReference;
         [SerializeField] private AudioSource ShootSource;
@@ -23,9 +23,7 @@ namespace UnityBibleSample
         [SerializeField] private LayerMask hitMask;
         private NetworkCharacterControllerPrototype _cc;
         private Camera _Camera;
-        private CinemachineVirtualCamera _cmVCam;
         private AudioListener _audioListener;
-        [SerializeField] private CinemachineBrain _cmBrain;
 
         private bool canMove;
 
@@ -33,23 +31,7 @@ namespace UnityBibleSample
         {
             _cc = GetComponent<NetworkCharacterControllerPrototype>();
             _Camera = GetComponentInChildren<Camera>();
-            _cmVCam = GetComponentInChildren<CinemachineVirtualCamera>();
             _audioListener = GetComponentInChildren<AudioListener>();
-        }
-
-        public override void Spawned()
-        {
-            if (Object.HasInputAuthority)
-            {
-                _Camera.cullingMask |= 1 << 10;
-                _cmVCam.gameObject.layer = 10;
-                _cmVCam.Priority++;
-            }
-            else
-            {
-                _Camera.cullingMask |= 1 << 11;
-                _cmVCam.gameObject.layer = 11;
-            }
         }
 
         public override void FixedUpdateNetwork()
@@ -59,7 +41,6 @@ namespace UnityBibleSample
                 //マルチピアでRunner visibility nodes対応できない部分の対処
                 _audioListener.enabled = false;
                 _Camera.enabled = false;
-                if(Runner.IsClient) _cmVCam.enabled = false;
             }
 
             // インプット処理
