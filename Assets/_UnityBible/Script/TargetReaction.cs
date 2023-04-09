@@ -37,7 +37,7 @@ namespace UnityBibleSample
 
         public void Respawn()
         {
-            var pos = UnityEngine.Random.insideUnitSphere * 10;
+            var pos = UnityEngine.Random.insideUnitSphere * 20;
             pos.y = 20;
 
             transform.position = pos;

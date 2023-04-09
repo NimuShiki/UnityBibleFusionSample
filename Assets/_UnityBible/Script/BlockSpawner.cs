@@ -23,7 +23,7 @@ namespace UnityBibleSample
 
         public override void Spawned()
         {
-            BlockSpawn(Runner);
+            Runner.AddCallbacks(this);
         }
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
@@ -33,22 +33,23 @@ namespace UnityBibleSample
 
         private void BlockSpawn(NetworkRunner runner)
         {
-
             for (int i = 0; i < _blockNum; i++)
             {
                 var pos = UnityEngine.Random.insideUnitSphere * _spawnRadius;
                 pos.y = _spawnHeight;
                 var obj = runner.Spawn(_blockPrefab, pos, Quaternion.identity, onBeforeSpawned: InitializeObjBeforeSpawn);
-                obj.transform.SetParent(targetParent, false);
+                //親子にNetworkTransformAnchorをアタッチしておく
+                if(Object.HasStateAuthority) obj.transform.SetParent(targetParent, false);
             }
 
             for (int i = 0; i < _bombNum; i++)
             {
                 var pos2 = UnityEngine.Random.insideUnitSphere * _spawnRadius;
                 pos2.y = _spawnHeight;
-                runner.Spawn(_bombPrefab, pos2, Quaternion.identity);
+                var obj = runner.Spawn(_bombPrefab, pos2, Quaternion.identity);
+                //親子にNetworkTransformAnchorをアタッチしておく
+                if (Object.HasStateAuthority) obj.transform.SetParent(targetParent, false);
             }
-
         }
 
         private void InitializeObjBeforeSpawn(NetworkRunner runner, NetworkObject obj)

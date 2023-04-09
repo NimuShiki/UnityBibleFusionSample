@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 971340068395851024}
   - component: {fileID: -7748285288012932677}
   - component: {fileID: 4019513107611853030}
+  - component: {fileID: 7290372382081174853}
   m_Layer: 6
   m_Name: Block
   m_TagString: Target
@@ -120,6 +121,7 @@ MonoBehaviour:
   - {fileID: 2986629322950384722}
   - {fileID: -7748285288012932677}
   - {fileID: 4019513107611853030}
+  - {fileID: 7290372382081174853}
   SimulationBehaviours: []
 --- !u!114 &-7748285288012932677
 MonoBehaviour:
@@ -151,6 +153,22 @@ MonoBehaviour:
   meshRenderer: {fileID: 6418676269019678594}
   rigidbody: {fileID: 971340068395851025}
   Interval: 0.5
+--- !u!114 &7290372382081174853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971340068395851038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980225298, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _interpolationTarget: {fileID: 0}
+  DetachInterpTarget: 0
+  SyncParent: 1
 --- !u!1 &4660601424138069535
 GameObject:
   m_ObjectHideFlags: 0
