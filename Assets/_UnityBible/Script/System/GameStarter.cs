@@ -35,6 +35,7 @@ namespace UnityBibleSample
             var startGameArgs = new StartGameArgs()
             {
                 SessionName = roomName.ToString(),
+                PlayerCount = 20,
                 GameMode = _gameMode,
                 Scene = 1,
                 SceneManager = _runnerInstance.gameObject.AddComponent<NetworkSceneManagerDefault>(),
