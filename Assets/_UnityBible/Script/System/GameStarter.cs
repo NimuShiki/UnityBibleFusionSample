@@ -12,20 +12,23 @@ namespace UnityBibleSample
     public class GameStarter : MonoBehaviour
     {
         [SerializeField] private GameObject _individualObject;
+        [SerializeField] private GameObject _canvasStarat;
         [SerializeField] private GameObject _canvas;
         [SerializeField] private NetworkRunner _networkRunnerPrefab = null;
         [SerializeField] private GameMode _gameMode = GameMode.AutoHostOrClient;
         [SerializeField] private ROOMNAME roomName;
         private NetworkRunner _runnerInstance = null;
+        [SerializeField] private AudioSource TitleBGM;
+        [SerializeField] private AudioSource BattleBGM;
 
         private void Awake()
         {
             Application.targetFrameRate = 60;
-
+            TitleBGM.Play();
             _runnerInstance = FindObjectOfType<NetworkRunner>();
             if (_runnerInstance != null) return;
             
-            StartGame();
+            //StartGame();
         }
 
         public async void StartGame()
@@ -43,11 +46,15 @@ namespace UnityBibleSample
 
             await _runnerInstance.StartGame(startGameArgs);
 
+            _canvasStarat.SetActive(false);
+            //BattleBGM.Play(2);
+            TitleBGM.Stop();
+
 #if UNITY_EDITOR
             _individualObject.SetActive(false);
             _canvas.SetActive(true);
 #else
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 #endif
         }
 
