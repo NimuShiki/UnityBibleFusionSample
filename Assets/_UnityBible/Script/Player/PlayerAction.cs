@@ -98,7 +98,7 @@ namespace UnityBibleSample
         public static void PlayFireParticle(Changed<PlayerAction> changed)
         {
             if (changed.Behaviour.underFire) {
-                changed.Behaviour.ShootSource.Play();
+                changed.Behaviour.ShootSource?.Play();
                 changed.Behaviour.fireParticle.Play();
             }
         }

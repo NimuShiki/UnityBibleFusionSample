@@ -12,8 +12,6 @@ namespace UnityBibleSample
 
         [SerializeField] private NetworkObject _playerPrefab;
         private readonly Dictionary<PlayerRef, NetworkObject> _playerMap = new Dictionary<PlayerRef, NetworkObject>();
-        private float innerRadius = 6f;
-        private float outerRadius = 8f;
         private TeamManager teamManager;
 
         private void Awake()
@@ -27,8 +25,6 @@ namespace UnityBibleSample
             {
                 Vector3 randomDirection = UnityEngine.Random.onUnitSphere;
                 
-                float randomDistance = UnityEngine.Random.Range(innerRadius, outerRadius);
-
                 var teamIndex = teamManager.GetTeamIndex();
                 Vector3 randomPosition = teamManager.GetRandomPosition(teamIndex);
 

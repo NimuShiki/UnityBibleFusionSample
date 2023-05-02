@@ -11,9 +11,9 @@ namespace UnityBibleSample
     {
         [Networked] private int _spawnRadius { get; set; } = 20;
         [Networked] private int _spawnHeight { get; set; } = 10;
-        [Networked] private int _blockNum { get; set; } = 5;
+        [Networked] private int _blockNum { get; set; } = 2;
         [SerializeField] private NetworkObject _blockPrefab;
-        [Networked] private int _bombNum { get; set; } = 2;
+        [Networked] private int _bombNum { get; set; } = 1;
         [SerializeField] private NetworkObject _bombPrefab;
         [SerializeField] private Transform targetParent;
 
@@ -24,16 +24,17 @@ namespace UnityBibleSample
         public override void Spawned()
         {
             Runner.AddCallbacks(this);
+            BlockSpawn(Runner, 5, 2);
         }
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
-            BlockSpawn(Runner);
+            BlockSpawn(Runner, _blockNum, _bombNum);
         }
 
-        private void BlockSpawn(NetworkRunner runner)
+        private void BlockSpawn(NetworkRunner runner,int block, int bomb)
         {
-            for (int i = 0; i < _blockNum; i++)
+            for (int i = 0; i < block; i++)
             {
                 var pos = UnityEngine.Random.insideUnitSphere * _spawnRadius;
                 pos.y = _spawnHeight;
@@ -42,7 +43,7 @@ namespace UnityBibleSample
                 if(Object.HasStateAuthority) obj.transform.SetParent(targetParent, false);
             }
 
-            for (int i = 0; i < _bombNum; i++)
+            for (int i = 0; i < bomb; i++)
             {
                 var pos2 = UnityEngine.Random.insideUnitSphere * _spawnRadius;
                 pos2.y = _spawnHeight;
