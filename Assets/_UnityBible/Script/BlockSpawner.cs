@@ -20,7 +20,6 @@ namespace UnityBibleSample
         int[] size = { 2, 3, 4 };
         int[] probabilities = { 8, 3, 1 };
 
-
         public override void Spawned()
         {
             Runner.AddCallbacks(this);
@@ -39,7 +38,7 @@ namespace UnityBibleSample
                 var pos = UnityEngine.Random.insideUnitSphere * _spawnRadius;
                 pos.y = _spawnHeight;
                 var obj = runner.Spawn(_blockPrefab, pos, Quaternion.identity, onBeforeSpawned: InitializeObjBeforeSpawn);
-                //親子にNetworkTransformAnchorをアタッチしておく
+                //親子共にNetworkTransformAnchorをアタッチしておかないと無効
                 if(Object.HasStateAuthority) obj.transform.SetParent(targetParent, false);
             }
 
@@ -48,7 +47,7 @@ namespace UnityBibleSample
                 var pos2 = UnityEngine.Random.insideUnitSphere * _spawnRadius;
                 pos2.y = _spawnHeight;
                 var obj = runner.Spawn(_bombPrefab, pos2, Quaternion.identity);
-                //親子にNetworkTransformAnchorをアタッチしておく
+                //親子共にNetworkTransformAnchorをアタッチしておかないと無効
                 if (Object.HasStateAuthority) obj.transform.SetParent(targetParent, false);
             }
         }

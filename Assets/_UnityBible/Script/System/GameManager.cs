@@ -24,8 +24,6 @@ namespace UnityBibleSample
         [SerializeField] private float gameInterval;
         [SerializeField] private TextMeshProUGUI TMPTime;
         [SerializeField] private TextMeshProUGUI TMPResult;
-        [SerializeField] private AudioSource JingleWin;
-        [SerializeField] private AudioSource JingleLose;
 
         public override void Spawned()
         {

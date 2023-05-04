@@ -20,7 +20,6 @@ namespace UnityBibleSample
         {
             _Camera = GetComponentInChildren<Camera>();
             _cmVCam = GetComponentInChildren<CinemachineVirtualCamera>();
-
         }
 
         public void Initialize(int team)

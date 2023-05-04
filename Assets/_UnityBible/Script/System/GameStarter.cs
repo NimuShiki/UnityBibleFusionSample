@@ -19,16 +19,13 @@ namespace UnityBibleSample
         [SerializeField] private ROOMNAME roomName;
         private NetworkRunner _runnerInstance = null;
         [SerializeField] private AudioSource TitleBGM;
-        [SerializeField] private AudioSource BattleBGM;
 
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            TitleBGM.Play();
+            TitleBGM?.Play();
             _runnerInstance = FindObjectOfType<NetworkRunner>();
             if (_runnerInstance != null) return;
-            
-            //StartGame();
         }
 
         public async void StartGame()
@@ -47,8 +44,7 @@ namespace UnityBibleSample
             await _runnerInstance.StartGame(startGameArgs);
 
             _canvasStarat.SetActive(false);
-            //BattleBGM.Play(2);
-            TitleBGM.Stop();
+            TitleBGM?.Stop();
 
 #if UNITY_EDITOR
             _individualObject.SetActive(false);

@@ -12,10 +12,8 @@ namespace UnityBibleSample
     {
         [Networked(OnChanged = nameof(PlayFireParticle))] private TickTimer delay { get; set; }
         private bool underFire => !delay.ExpiredOrNotRunning(Runner);
-        [SerializeField] private GameObject VisualObject;
         [SerializeField] private Transform ShootReference;
         [SerializeField] private AudioSource ShootSource;
-        [SerializeField] private ParticleSystem fireParticle;
         [SerializeField] private float fireInterval;
         [SerializeField] private float ShootPower;
         [SerializeField] private float RayLength;
@@ -24,6 +22,7 @@ namespace UnityBibleSample
         private NetworkCharacterControllerPrototype _cc;
         private Camera _Camera;
         private AudioListener _audioListener;
+        private ParticleSystem fireParticle;
 
         private bool canMove;
 
@@ -32,6 +31,7 @@ namespace UnityBibleSample
             _cc = GetComponent<NetworkCharacterControllerPrototype>();
             _Camera = GetComponentInChildren<Camera>();
             _audioListener = GetComponentInChildren<AudioListener>();
+            fireParticle = ShootReference.GetComponentInChildren<ParticleSystem>();
         }
 
         public override void FixedUpdateNetwork()
